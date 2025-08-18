@@ -13,28 +13,28 @@ const Version = "0.1.0"
 // Options represents model parameters and inference options
 type Options struct {
 	NumKeep          *int     `json:"num_keep,omitempty"`
-	Seed            *int     `json:"seed,omitempty"`
-	NumPredict      *int     `json:"num_predict,omitempty"`
-	TopK            *int     `json:"top_k,omitempty"`
-	TopP            *float64 `json:"top_p,omitempty"`
-	TFSZ            *float64 `json:"tfs_z,omitempty"`
-	TypicalP        *float64 `json:"typical_p,omitempty"`
-	RepeatLastN     *int     `json:"repeat_last_n,omitempty"`
-	Temperature     *float64 `json:"temperature,omitempty"`
-	RepeatPenalty   *float64 `json:"repeat_penalty,omitempty"`
-	PresencePenalty *float64 `json:"presence_penalty,omitempty"`
+	Seed             *int     `json:"seed,omitempty"`
+	NumPredict       *int     `json:"num_predict,omitempty"`
+	TopK             *int     `json:"top_k,omitempty"`
+	TopP             *float64 `json:"top_p,omitempty"`
+	TFSZ             *float64 `json:"tfs_z,omitempty"`
+	TypicalP         *float64 `json:"typical_p,omitempty"`
+	RepeatLastN      *int     `json:"repeat_last_n,omitempty"`
+	Temperature      *float64 `json:"temperature,omitempty"`
+	RepeatPenalty    *float64 `json:"repeat_penalty,omitempty"`
+	PresencePenalty  *float64 `json:"presence_penalty,omitempty"`
 	FrequencyPenalty *float64 `json:"frequency_penalty,omitempty"`
-	Mirostat        *int     `json:"mirostat,omitempty"`
-	MirostatTau     *float64 `json:"mirostat_tau,omitempty"`
-	MirostatEta     *float64 `json:"mirostat_eta,omitempty"`
-	PenalizeNewline *bool    `json:"penalize_newline,omitempty"`
-	Stop            []string `json:"stop,omitempty"`
-	NumGPU          *int     `json:"num_gpu,omitempty"`
-	NumThread       *int     `json:"num_thread,omitempty"`
-	NumCtx          *int     `json:"num_ctx,omitempty"`
-	LogitsAll       *bool    `json:"logits_all,omitempty"`
-	EmbeddingOnly   *bool    `json:"embedding_only,omitempty"`
-	F16KV           *bool    `json:"f16_kv,omitempty"`
+	Mirostat         *int     `json:"mirostat,omitempty"`
+	MirostatTau      *float64 `json:"mirostat_tau,omitempty"`
+	MirostatEta      *float64 `json:"mirostat_eta,omitempty"`
+	PenalizeNewline  *bool    `json:"penalize_newline,omitempty"`
+	Stop             []string `json:"stop,omitempty"`
+	NumGPU           *int     `json:"num_gpu,omitempty"`
+	NumThread        *int     `json:"num_thread,omitempty"`
+	NumCtx           *int     `json:"num_ctx,omitempty"`
+	LogitsAll        *bool    `json:"logits_all,omitempty"`
+	EmbeddingOnly    *bool    `json:"embedding_only,omitempty"`
+	F16KV            *bool    `json:"f16_kv,omitempty"`
 }
 
 // Message represents a chat message
@@ -60,9 +60,9 @@ type Function struct {
 
 // ToolCall represents a function call from the model
 type ToolCall struct {
-	ID       string          `json:"id"`
-	Type     string          `json:"type"`
-	Function FunctionCall    `json:"function"`
+	ID       string       `json:"id"`
+	Type     string       `json:"type"`
+	Function FunctionCall `json:"function"`
 }
 
 // FunctionCall represents the details of a function call
@@ -79,55 +79,55 @@ type Tool struct {
 
 // GenerateRequest represents a completion request
 type GenerateRequest struct {
-	Model     string   `json:"model"`
-	Prompt    string   `json:"prompt,omitempty"`
-	System    string   `json:"system,omitempty"`
-	Template  string   `json:"template,omitempty"`
-	Context   []int    `json:"context,omitempty"`
-	Stream    bool     `json:"stream"`
-	Raw       bool     `json:"raw,omitempty"`
-	Format    string   `json:"format,omitempty"`
-	Images    []Image  `json:"images,omitempty"`
-	Options   *Options `json:"options,omitempty"`
-	KeepAlive string   `json:"keep_alive,omitempty"`
+	Model     string          `json:"model"`
+	Prompt    string          `json:"prompt,omitempty"`
+	System    string          `json:"system,omitempty"`
+	Template  string          `json:"template,omitempty"`
+	Context   []int           `json:"context,omitempty"`
+	Stream    bool            `json:"stream"`
+	Raw       bool            `json:"raw,omitempty"`
+	Format    json.RawMessage `json:"format,omitempty"`
+	Images    []Image         `json:"images,omitempty"`
+	Options   *Options        `json:"options,omitempty"`
+	KeepAlive string          `json:"keep_alive,omitempty"`
 }
 
 // GenerateResponse represents a completion response
 type GenerateResponse struct {
-	Model             string  `json:"model,omitempty"`
-	CreatedAt        string  `json:"created_at,omitempty"`
-	Response         string  `json:"response"`
-	Done             bool    `json:"done,omitempty"`
-	Context          []int   `json:"context,omitempty"`
-	TotalDuration    int64   `json:"total_duration,omitempty"`
-	LoadDuration     int64   `json:"load_duration,omitempty"`
-	PromptEvalCount  int     `json:"prompt_eval_count,omitempty"`
-	EvalCount        int     `json:"eval_count,omitempty"`
-	EvalDuration     int64   `json:"eval_duration,omitempty"`
+	Model           string `json:"model,omitempty"`
+	CreatedAt       string `json:"created_at,omitempty"`
+	Response        string `json:"response"`
+	Done            bool   `json:"done,omitempty"`
+	Context         []int  `json:"context,omitempty"`
+	TotalDuration   int64  `json:"total_duration,omitempty"`
+	LoadDuration    int64  `json:"load_duration,omitempty"`
+	PromptEvalCount int    `json:"prompt_eval_count,omitempty"`
+	EvalCount       int    `json:"eval_count,omitempty"`
+	EvalDuration    int64  `json:"eval_duration,omitempty"`
 }
 
 // ChatRequest represents a chat completion request
 type ChatRequest struct {
-	Model     string    `json:"model"`
-	Messages  []Message `json:"messages"`
-	Format    string    `json:"format,omitempty"`
-	Stream    bool      `json:"stream"`
-	Tools     []Tool    `json:"tools,omitempty"`
-	Options   *Options  `json:"options,omitempty"`
-	KeepAlive string    `json:"keep_alive,omitempty"`
+	Model     string          `json:"model"`
+	Messages  []Message       `json:"messages"`
+	Format    json.RawMessage `json:"format,omitempty"`
+	Stream    bool            `json:"stream"`
+	Tools     []Tool          `json:"tools,omitempty"`
+	Options   *Options        `json:"options,omitempty"`
+	KeepAlive string          `json:"keep_alive,omitempty"`
 }
 
 // ChatResponse represents a chat completion response
 type ChatResponse struct {
-	Model            string   `json:"model,omitempty"`
-	CreatedAt        string   `json:"created_at,omitempty"`
-	Message          Message  `json:"message"`
-	Done             bool     `json:"done,omitempty"`
-	TotalDuration    int64    `json:"total_duration,omitempty"`
-	LoadDuration     int64    `json:"load_duration,omitempty"`
-	PromptEvalCount  int      `json:"prompt_eval_count,omitempty"`
-	EvalCount        int      `json:"eval_count,omitempty"`
-	EvalDuration     int64    `json:"eval_duration,omitempty"`
+	Model           string  `json:"model,omitempty"`
+	CreatedAt       string  `json:"created_at,omitempty"`
+	Message         Message `json:"message"`
+	Done            bool    `json:"done,omitempty"`
+	TotalDuration   int64   `json:"total_duration,omitempty"`
+	LoadDuration    int64   `json:"load_duration,omitempty"`
+	PromptEvalCount int     `json:"prompt_eval_count,omitempty"`
+	EvalCount       int     `json:"eval_count,omitempty"`
+	EvalDuration    int64   `json:"eval_duration,omitempty"`
 }
 
 // EmbedRequest represents an embedding request
@@ -178,79 +178,79 @@ type DeleteRequest struct {
 
 // ShowModelRequest represents a request to show model details
 type ShowModelRequest struct {
-    Name string `json:"model"`
+	Name string `json:"model"`
 }
 
 // ShowModelResponse represents detailed information about a model
 type ShowModelResponse struct {
-    ModelFile  string                 `json:"modelfile,omitempty"`
-    Template   string                 `json:"template,omitempty"`
-    Parameters string                 `json:"parameters,omitempty"`
-    License    string                 `json:"license,omitempty"`
-    Details    ModelDetails           `json:"details,omitempty"`
-    ModelInfo  map[string]interface{} `json:"model_info,omitempty"`
-    ModifiedAt time.Time              `json:"modified_at,omitempty"`
+	ModelFile  string                 `json:"modelfile,omitempty"`
+	Template   string                 `json:"template,omitempty"`
+	Parameters string                 `json:"parameters,omitempty"`
+	License    string                 `json:"license,omitempty"`
+	Details    ModelDetails           `json:"details,omitempty"`
+	ModelInfo  map[string]interface{} `json:"model_info,omitempty"`
+	ModifiedAt time.Time              `json:"modified_at,omitempty"`
 }
 
 // CopyModelRequest represents a request to copy a model
 type CopyModelRequest struct {
-    Source      string `json:"source"`
-    Destination string `json:"destination"`
+	Source      string `json:"source"`
+	Destination string `json:"destination"`
 }
 
 // DeleteModelRequest represents a request to delete a model
 type DeleteModelRequest struct {
-    Name string `json:"model"`
+	Name string `json:"model"`
 }
 
 // PullModelRequest represents a request to pull a model from a registry
 type PullModelRequest struct {
-    Name     string `json:"model"`
-    Insecure bool   `json:"insecure,omitempty"`
-    Stream   bool   `json:"stream,omitempty"`
+	Name     string `json:"model"`
+	Insecure bool   `json:"insecure,omitempty"`
+	Stream   bool   `json:"stream,omitempty"`
 }
 
 // PushModelRequest represents a request to push a model to a registry
 type PushModelRequest struct {
-    Name     string `json:"model"`
-    Insecure bool   `json:"insecure,omitempty"`
-    Stream   bool   `json:"stream,omitempty"`
+	Name     string `json:"model"`
+	Insecure bool   `json:"insecure,omitempty"`
+	Stream   bool   `json:"stream,omitempty"`
 }
 
 // EmbeddingsRequest represents a request to generate embeddings
 type EmbeddingsRequest struct {
-    Model     string    `json:"model"`
-    Prompt    string    `json:"prompt"`
-    Options   *Options  `json:"options,omitempty"`
-    KeepAlive string    `json:"keep_alive,omitempty"`
+	Model     string   `json:"model"`
+	Prompt    string   `json:"prompt"`
+	Options   *Options `json:"options,omitempty"`
+	KeepAlive string   `json:"keep_alive,omitempty"`
 }
 
 // EmbeddingsResponse represents the response containing embeddings
 type EmbeddingsResponse struct {
-    Embedding []float64 `json:"embedding"`
+	Embedding []float64 `json:"embedding"`
 }
 
 // CreateModelRequest represents a request to create a new model
 type CreateModelRequest struct {
-    Model     string `json:"model"`
-    Path      string `json:"-"` // used locally, not sent to API
-    Modelfile string `json:"modelfile"`
-    Stream    bool   `json:"stream,omitempty"`
+	Model     string `json:"model"`
+	Path      string `json:"-"` // used locally, not sent to API
+	Modelfile string `json:"modelfile"`
+	Stream    bool   `json:"stream,omitempty"`
 	Name      string `json:"name"`
 }
 
 // ListModelsResponse represents the response containing available models
 type ListModelsResponse struct {
-    Models []ModelInfo `json:"models"`
+	Models []ModelInfo `json:"models"`
 }
 
 // ModelInfo represents information about a model
 type ModelInfo struct {
-    Name       string       `json:"name"`
-    ModifiedAt time.Time    `json:"modified_at"`
-    Digest     string       `json:"digest,omitempty"`
-    Size       int64        `json:"size"`
-    Details    ModelDetails `json:"details,omitempty"`
+	Name       string       `json:"name"`
+	ModifiedAt time.Time    `json:"modified_at"`
+	Digest     string       `json:"digest,omitempty"`
+	Size       int64        `json:"size"`
+	Details    ModelDetails `json:"details,omitempty"`
 }
 
 // ListResponse represents a model list response
@@ -269,21 +269,21 @@ type Model struct {
 
 // ModelDetails represents detailed model information
 type ModelDetails struct {
-	Format           string   `json:"format,omitempty"`
-	Family           string   `json:"family,omitempty"`
-	Families         []string `json:"families,omitempty"`
-	ParameterSize    string   `json:"parameter_size,omitempty"`
+	Format            string   `json:"format,omitempty"`
+	Family            string   `json:"family,omitempty"`
+	Families          []string `json:"families,omitempty"`
+	ParameterSize     string   `json:"parameter_size,omitempty"`
 	QuantizationLevel string   `json:"quantization_level,omitempty"`
 }
 
 // ShowResponse represents detailed model information
 type ShowResponse struct {
-	License    string                 `json:"license,omitempty"`
-	Modelfile  string                 `json:"modelfile,omitempty"`
-	Template   string                 `json:"template,omitempty"`
-	System     string                 `json:"system,omitempty"`
-	Parameters string                 `json:"parameters,omitempty"`
-	Details    ModelDetails           `json:"details,omitempty"`
+	License    string       `json:"license,omitempty"`
+	Modelfile  string       `json:"modelfile,omitempty"`
+	Template   string       `json:"template,omitempty"`
+	System     string       `json:"system,omitempty"`
+	Parameters string       `json:"parameters,omitempty"`
+	Details    ModelDetails `json:"details,omitempty"`
 }
 
 // StatusResponse represents a basic status response
