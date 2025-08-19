@@ -79,17 +79,17 @@ type Tool struct {
 
 // GenerateRequest represents a completion request
 type GenerateRequest struct {
-	Model     string   `json:"model"`
-	Prompt    string   `json:"prompt,omitempty"`
-	System    string   `json:"system,omitempty"`
-	Template  string   `json:"template,omitempty"`
-	Context   []int    `json:"context,omitempty"`
-	Stream    bool     `json:"stream"`
-	Raw       bool     `json:"raw,omitempty"`
-	Format    string   `json:"format,omitempty"`
-	Images    []Image  `json:"images,omitempty"`
-	Options   *Options `json:"options,omitempty"`
-	KeepAlive string   `json:"keep_alive,omitempty"`
+	Model     string          `json:"model"`
+	Prompt    string          `json:"prompt,omitempty"`
+	System    string          `json:"system,omitempty"`
+	Template  string          `json:"template,omitempty"`
+	Context   []int           `json:"context,omitempty"`
+	Stream    bool            `json:"stream"`
+	Raw       bool            `json:"raw,omitempty"`
+	Format    json.RawMessage `json:"format,omitempty"`
+	Images    []Image         `json:"images,omitempty"`
+	Options   *Options        `json:"options,omitempty"`
+	KeepAlive string          `json:"keep_alive,omitempty"`
 }
 
 // GenerateResponse represents a completion response
@@ -108,13 +108,13 @@ type GenerateResponse struct {
 
 // ChatRequest represents a chat completion request
 type ChatRequest struct {
-	Model     string    `json:"model"`
-	Messages  []Message `json:"messages"`
-	Format    string    `json:"format,omitempty"`
-	Stream    bool      `json:"stream"`
-	Tools     []Tool    `json:"tools,omitempty"`
-	Options   *Options  `json:"options,omitempty"`
-	KeepAlive string    `json:"keep_alive,omitempty"`
+	Model     string          `json:"model"`
+	Messages  []Message       `json:"messages"`
+	Format    json.RawMessage `json:"format,omitempty"`
+	Stream    bool            `json:"stream"`
+	Tools     []Tool          `json:"tools,omitempty"`
+	Options   *Options        `json:"options,omitempty"`
+	KeepAlive string          `json:"keep_alive,omitempty"`
 }
 
 // ChatResponse represents a chat completion response
